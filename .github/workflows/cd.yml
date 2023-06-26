@@ -1,0 +1,26 @@
+---
+on:
+  workflow_dispatch:
+    inputs:
+      package_module:
+        description: package python module
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  continuous_delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+          with:
+            fetch-depth: 0
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+          with:
+            python-version: 3.9
+      - name: say hello
+        run: echo "hello"
+
+
