@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "pypkg-semver-spike"
+version = "0.1.0"
+description = "Spike using GitHub Actions for python pkg semantic versioning."
+authors = ["Chris Ottinger <datwiz@coco.id.au>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "pypkg_semver_spike/"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+python-semantic-release = "^7.34.6"
+black = "^23.3.0"
+flake8 = "^6.0.0"
+
+[tool.semantic_release]
+branch = "main"
+version_variable = [
+    "pyproject.toml:version",
+    "pypkg_semver_spike/__init__.py:__version__"
+]
+version_source = "tag"
+upload_to_repository = "false"
+upload_to_release = "false"
+patch_without_tag = "true"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
