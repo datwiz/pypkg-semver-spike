@@ -9,7 +9,7 @@ on:
         type: boolean
 
 jobs:
-  package_and_release:
+  continuous_delivery:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
