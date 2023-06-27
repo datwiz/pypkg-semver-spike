@@ -32,7 +32,7 @@ jobs:
           poetry install
       - name: Promote package to Release
         run: |
-          export RELEASE_TAG=$(poetry run semantic-release print-version --current)
+          export RELEASE_TAG=v$(poetry run semantic-release print-version --current)
           echo "Promoting Release tag: $RELEASE_TAG"
           gh release create $RELEASE_TAG --title $RELEASE_TAG --notes "Release $RELEASE_TAG"        
 
