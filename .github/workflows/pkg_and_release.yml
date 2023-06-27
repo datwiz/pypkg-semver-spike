@@ -32,3 +32,5 @@ jobs:
           git config use.email "${GITHUB_ACTOR}@users.noreply.github.com"
           poetry run semantic-release print-version --current
           poetry run semantic-release version
+          echo "Before push - local tags are"
+          git tag
