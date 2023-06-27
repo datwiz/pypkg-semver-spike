@@ -29,7 +29,4 @@ jobs:
       - name: Increment package version
         run: |
           poetry run semantic-release print-version --current
-          poetry run semantic-release version --noop
-          semantic-release version
-
-
+          poetry run semantic-release version
