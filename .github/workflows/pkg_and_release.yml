@@ -33,4 +33,4 @@ jobs:
           poetry run semantic-release print-version --current
           poetry run semantic-release version
           echo "Before push - local tags are"
-          git tag
+          git push --tags
