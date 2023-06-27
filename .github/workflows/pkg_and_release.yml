@@ -26,6 +26,10 @@ jobs:
       - name: Setup python environment
         run: |
           poetry install
+      - name: dump env
+        run: |
+          echo "Available env vars"
+          env
       - name: Increment package version
         run: |
           git config user.name "${GITHUB_ACTOR}"
