@@ -1,0 +1,32 @@
+---
+on:
+  workflow_dispatch:
+    inputs:
+      package_module:
+        description: Release python package
+        required: true
+        default: false
+        type: boolean
+
+jobs:
+  promote_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install poetry
+        run: pip3 install poetry
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: 'poetry'
+      - name: Setup python environment
+        run: |
+          poetry install
+      - name: Promote package to Release
+        run: |
+          echo "checking for github cli"
+          gh --version
