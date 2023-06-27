@@ -9,7 +9,7 @@ on:
         type: boolean
 
 jobs:
-  continuous_delivery:
+  package_rel_candidate:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,12 +17,16 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
-      - name: say hello
+      - name: Setup python environment
+        run: |
+          poetry install
+      - name: 
         run: |
           echo "hello"
           python --version
+          poetry env list
 
 
