@@ -28,5 +28,6 @@ jobs:
           poetry install
       - name: Promote package to Release
         run: |
-          echo "checking for github cli"
-          gh --version
+          export RELEASE_TAG=$(poetry run semantic-release print-version --current)
+          gh release create $RELEASE_TAG --title $RELEASE_TAG --notes "Release $RELEASE_TAG"        
+
