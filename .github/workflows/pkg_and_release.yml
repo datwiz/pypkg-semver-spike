@@ -26,11 +26,9 @@ jobs:
       - name: Setup python environment
         run: |
           poetry install
-      - name: 
+      - name: Increment package version
         run: |
-          echo "hello"
-          python --version
-          poetry env list
-          poetry install
+          poetry run semantic-release print-version --current
+          poetry run semantic-release versiob --noop
 
 
