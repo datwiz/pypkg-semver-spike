@@ -9,7 +9,7 @@ on:
         type: boolean
 
 jobs:
-  package_rel_candidate:
+  release_candidate:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -28,11 +28,7 @@ jobs:
       - name: Setup python environment
         run: |
           poetry install
-      - name: dump env
-        run: |
-          echo "Available env vars"
-          env
-      - name: Increment package version
+      - name: Package release candidate and tag
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config use.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -40,3 +36,24 @@ jobs:
           poetry run semantic-release version
           echo "Before push - local tags are"
           git push --tags
+  promote_to_release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install poetry
+        run: pip3 install poetry
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: 'poetry'
+      - name: Setup python environment
+        run: |
+          poetry install
+      - name: Promote package to Release
+        run: |
+          echo "checking for github cli"
+          gh --version
