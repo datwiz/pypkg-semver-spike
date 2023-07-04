@@ -27,6 +27,15 @@ upload_to_repository = "false"
 upload_to_release = "false"
 patch_without_tag = "true"
 
+[tool.commitizen]
+# version = '0.1.0'
+version_provider = "scm"
+tag_format = "v$major.$minor.$patch"
+version_files = [
+    "pyproject.toml:version",
+    "pypkg_semver_spike/__init__.py:__version__"
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
