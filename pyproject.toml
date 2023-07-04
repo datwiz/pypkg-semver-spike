@@ -28,7 +28,6 @@ upload_to_release = "false"
 patch_without_tag = "true"
 
 [tool.commitizen]
-# version = '0.1.0'
 version_provider = "scm"
 tag_format = "v$major.$minor.$patch"
 version_files = [
